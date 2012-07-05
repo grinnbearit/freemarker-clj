@@ -9,8 +9,8 @@
  (class (gen-config "test-templates")) => Configuration)
 
 
-(let [cfg (gen-config "test-templates")]
+(let [cfg (gen-config "test-templates" :shared {:a "Pie" :b "Apple"})]
   (facts
    (render cfg "plain.ftl" {}) => "Hello World!\n"
    (render cfg "basic_model.ftl" {:a "World" :b "Hello"}) => "Hello World!\n"
-   (render cfg "basic_model.ftl" {"a" "World" "b" "Hello"} :map->model? false) => "Hello World!\n"))
+   (render cfg "basic_model.ftl" {}) => "Apple Pie!\n"))

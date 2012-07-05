@@ -7,10 +7,13 @@
 
 
 (defn gen-config
-  [template-home]
-  (doto (Configuration.)
-    (.setDirectoryForTemplateLoading (java.io.File. template-home))
-    (.setObjectWrapper (DefaultObjectWrapper.))))
+  [template-home & {:keys [shared] :or {shared {}}}]
+  (let [cfg (doto (Configuration.)
+              (.setDirectoryForTemplateLoading (java.io.File. template-home))
+              (.setObjectWrapper (DefaultObjectWrapper.)))]
+    (doseq [[k v] (map->model shared)]
+      (.setSharedVariable cfg k v))
+    cfg))
 
 
 (defn render

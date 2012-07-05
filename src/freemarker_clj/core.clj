@@ -1,4 +1,5 @@
 (ns freemarker-clj.core
+  (:use [freemarker-clj.shim :only [map->model]])
   (:import [freemarker.template
             Configuration
             DefaultObjectWrapper
@@ -13,8 +14,10 @@
 
 
 (defn render
-  [cfg path model]
+  [cfg path model & {:keys [map->model?] :or {map->model? true}}]
   (with-out-str
     (.process (.getTemplate cfg path)
-              model
+              (if map->model?
+                (map->model model)
+                model)
               *out*)))

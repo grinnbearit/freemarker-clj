@@ -11,39 +11,48 @@
             TemplateScalarModel
             TemplateSequenceModel]))
 
+(defprotocol IFtlToClj
+  (ftl->clj [o] "Convert a Ftl object to its Clojure equivalent."))
 
-(defn ftl->clj
-  [x]
-  (cond
-   (instance? TemplateBooleanModel x)
-   (.getAsBoolean x)
 
-   (instance? TemplateCollectionModel x)
-   (let [iterator (.iterator x)]
-     (loop [acc []]
-       (if (.hasNext iterator)
-         (conj acc (ftl->clj (.next iterator)))
-         acc)))
+(extend-protocol IFtlToClj
+  TemplateBooleanModel
+  (ftl->clj [x]
+    (.getAsBoolean x))
 
-   (instance? TemplateDateModel x)
-   (.getAsDate x)
+  TemplateCollectionModel
+  (ftl->clj [x]
+    (let [iterator (.iterator x)]
+      (loop [acc []]
+        (if (.hasNext iterator)
+          (conj acc (ftl->clj (.next iterator)))
+          acc))))
 
-   (instance? TemplateHashModelEx x)
-   (zipmap (ftl->clj (.keys x))
-           (ftl->clj (.values x)))
+  TemplateDateModel
+  (ftl->clj [x]
+    (.getAsDate x))
 
-   (instance? TemplateNumberModel x)
-   (.getAsNumber x)
+  TemplateHashModelEx
+  (ftl->clj [x]
+    (zipmap (ftl->clj (.keys x))
+            (ftl->clj (.values x))))
 
-   (instance? TemplateScalarModel x)
-   (.getAsString x)
+  TemplateNumberModel
+  (ftl->clj [x]
+    (.getAsNumber x))
 
-   (instance? TemplateSequenceModel x)
-   (for [i (range (.size x))]
-     (ftl->clj (.get x i)))
+  TemplateScalarModel
+  (ftl->clj [x]
+    (.getAsString x))
 
-   :else
-   (throw (IllegalArgumentException. (format "Don't know how to convert %s (class %s) to clj" x (class x))))))
+  TemplateSequenceModel
+  (ftl->clj [x]
+    (for [i (range (.size x))]
+      (ftl->clj (.get x i))))
+
+  Object
+  (ftl->clj [x]
+    (throw (IllegalArgumentException. (format "Don't know how to convert %s (class %s) to clj" x (class x))))))
 
 
 (defn fn->method

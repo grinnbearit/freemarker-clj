@@ -20,6 +20,7 @@
                                         "boolean" (fn->method (pred-check (comp (constantly true) boolean)))
                                         "sequence" (fn->method (pred-check seq?))
                                         "hash" (fn->method (pred-check map?))
+                                        "count" (fn->method count)
 
                                         "return_string" (fn->method (constantly "apple"))
                                         "return_number" (fn->method (constantly Math/PI))
@@ -29,7 +30,7 @@
                                         "return_date" (fn->method (constantly (let [cal (java.util.Calendar/getInstance)]
                                                                                 (.set cal 1970 0 1 0 0 0)
                                                                                 (.getTime cal))))})
-        => "\napple\n3.142\ncrazy\n2\n2\nJan 1, 1970 12:00:00 AM\n"))
+        => "\n3\n2\napple\n3.142\ncrazy\n2\n2\nJan 1, 1970 12:00:00 AM\n"))
 
 
 (let [cfg (gen-config "test-templates")]

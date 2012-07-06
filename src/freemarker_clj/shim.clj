@@ -25,7 +25,7 @@
     (let [iterator (.iterator x)]
       (loop [acc []]
         (if (.hasNext iterator)
-          (conj acc (ftl->clj (.next iterator)))
+          (recur (conj acc (ftl->clj (.next iterator))))
           acc))))
 
   TemplateDateModel

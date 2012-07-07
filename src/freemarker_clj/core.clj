@@ -1,5 +1,6 @@
 (ns freemarker-clj.core
-  (:use [freemarker-clj.shim :only [map->model]])
+  (:use [freemarker-clj.shim :only [map->model]]
+        [clojure.java.io :only [file]])
   (:import [freemarker.template
             Configuration
             DefaultObjectWrapper
@@ -9,7 +10,7 @@
 (defn gen-config
   [template-home & {:keys [shared] :or {shared {}}}]
   (let [cfg (doto (Configuration.)
-              (.setDirectoryForTemplateLoading (java.io.File. template-home))
+              (.setDirectoryForTemplateLoading (file template-home))
               (.setObjectWrapper (DefaultObjectWrapper.)))]
     (doseq [[k v] (map->model shared)]
       (.setSharedVariable cfg k v))

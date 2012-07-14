@@ -6,11 +6,11 @@
 
 
 (facts
- (class (gen-config "test-templates")) => Configuration)
+ (class (gen-config)) => Configuration)
 
 
-(let [cfg (gen-config "test-templates" :shared {:a "Pie" :b "Apple"})]
+(let [cfg (gen-config :shared {:a "Pie" :b "Apple"})]
   (facts
-   (render cfg "plain.ftl" {}) => "Hello World!\n"
-   (render cfg "basic_model.ftl" {:a "World" :b "Hello"}) => "Hello World!\n"
-   (render cfg "basic_model.ftl" {}) => "Apple Pie!\n"))
+   (render cfg "test-templates/plain.ftl" {}) => "Hello World!\n"
+   (render cfg "test-templates/basic_model.ftl" {:a "World" :b "Hello"}) => "Hello World!\n"
+   (render cfg "test-templates/basic_model.ftl" {}) => "Apple Pie!\n"))

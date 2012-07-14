@@ -8,9 +8,8 @@
 
 
 (defn gen-config
-  [template-home & {:keys [shared] :or {shared {}}}]
+  [& {:keys [shared] :or {shared {}}}]
   (let [cfg (doto (Configuration.)
-              (.setDirectoryForTemplateLoading (file template-home))
               (.setObjectWrapper (DefaultObjectWrapper.)))]
     (doseq [[k v] (map->model shared)]
       (.setSharedVariable cfg k v))

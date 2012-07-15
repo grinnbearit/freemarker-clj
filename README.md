@@ -1,4 +1,4 @@
-## freemarker-clj
+# freemarker-clj
 
 A wrapper for the [freemarker template engine](http://freemarker.sourceforge.net/)
 
@@ -10,16 +10,16 @@ Create a new template config
 
 ```clojure
 (use 'freemarker-clj.core)
-(defonce cfg (gen-config "templates"))
+(defonce cfg (gen-config))
 (render cfg "template.ftl" {:some-seq [1 2 3] :some-map {:a 4 :b 5} :some-fn inc})
 ```
 
 `render` stringifies the map, replacing hyphens with underscores
 
-You can additionally pass a default map to cfg which will be shared
+You can additionally pass a shared map to the template config
 
 ```clojure
-(defonce cfg (gen-config "templates" :shared {:a 1 :b 2}))
+(defonce cfg (gen-config :shared {:a 1 :b 2}))
 (render cfg "template.ftl" {:b 3}) ; a => 1, b => 3
 ```
 

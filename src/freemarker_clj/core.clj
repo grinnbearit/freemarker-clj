@@ -4,7 +4,8 @@
   (:import [freemarker.template
             Configuration
             DefaultObjectWrapper
-            TemplateMethodModel]))
+            TemplateMethodModel]
+           [java.io StringWriter]))
 
 
 (defn gen-config
@@ -17,10 +18,29 @@
 
 
 (defn render
-  [^Configuration cfg path model & {:keys [map->model?] :or {map->model? true}}]
-  (with-out-str
+  [^Configuration cfg path model
+   & {:keys [map->model? out]
+      :or {map->model? true
+           out (StringWriter.)}}]
+  (binding [*out* out]
     (.process (.getTemplate cfg path)
               (if map->model?
                 (map->model model)
                 model)
               *out*)))
+
+
+(defn render
+  "Renders a template given by Configuration cfg and a path using model as input and writes it to out
+If out is not provided, returns a string
+If translate-model? is set, freemarker-clj.shim/map->model is run on the model
+"
+  ([^Configuration cfg path model]
+     (str (render cfg (StringWriter.) path model)))
+  ([^Configuration cfg out path model & {:keys [translate-model?] :or {translate-model? true}}]
+     (.process (.getTemplate cfg path)
+               (if translate-model?
+                 (map->model model)
+                 model)
+               out)
+     out))

@@ -14,3 +14,9 @@
    (render cfg "test-templates/plain.ftl" {}) => "Hello World!\n"
    (render cfg "test-templates/basic_model.ftl" {:a "World" :b "Hello"}) => "Hello World!\n"
    (render cfg "test-templates/basic_model.ftl" {}) => "Apple Pie!\n"))
+
+
+(let [cfg (gen-config :shared {:a "Pie" :b "Apple"})]
+  (facts
+   (with-out-str
+     (render cfg *out* "test-templates/plain.ftl" {})) => "Hello World!\n"))

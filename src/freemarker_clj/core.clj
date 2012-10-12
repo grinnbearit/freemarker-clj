@@ -18,22 +18,9 @@
 
 
 (defn render
-  [^Configuration cfg path model
-   & {:keys [map->model? out]
-      :or {map->model? true
-           out (StringWriter.)}}]
-  (binding [*out* out]
-    (.process (.getTemplate cfg path)
-              (if map->model?
-                (map->model model)
-                model)
-              *out*)))
-
-
-(defn render
   "Renders a template given by Configuration cfg and a path using model as input and writes it to out
 If out is not provided, returns a string
-If translate-model? is set, freemarker-clj.shim/map->model is run on the model
+If translate-model? is true, freemarker-clj.shim/map->model is run on the model
 "
   ([^Configuration cfg path model]
      (str (render cfg (StringWriter.) path model)))

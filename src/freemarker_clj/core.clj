@@ -12,12 +12,12 @@
   (let [cfg (doto (Configuration.)
               (.setObjectWrapper (DefaultObjectWrapper.)))]
     (doseq [[k v] (map->model shared)]
-      (.setSharedVariable cfg k v))
+      (.setSharedVariable ^Configuration cfg ^String k v))
     cfg))
 
 
 (defn render
-  [cfg path model & {:keys [map->model?] :or {map->model? true}}]
+  [^Configuration cfg path model & {:keys [map->model?] :or {map->model? true}}]
   (with-out-str
     (.process (.getTemplate cfg path)
               (if map->model?

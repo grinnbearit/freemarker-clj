@@ -4,6 +4,26 @@ A wrapper for the [freemarker template engine](http://freemarker.sourceforge.net
 
 In its early stages, will add more features as I need them, suggestions and patches welcome
 
+## Dependency
+
+freemarker-clj is deployed on [clojars](https://clojars.org/freemarker-clj)
+
+### leiningen
+
+```clojure
+[freemarker-clj "0.1.0"]
+```
+
+### maven
+
+```xml
+<dependency>
+  <groupId>freemarker-clj</groupId>
+  <artifactId>freemarker-clj</artifactId>
+  <version>0.1.0</version>
+</dependency>
+```
+
 ## Usage
 
 Create a new template config

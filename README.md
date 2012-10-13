@@ -46,6 +46,7 @@ You can additionally pass a shared map to the template config
 ## Contributors
 
 * [Baishampayan Ghose](https://github.com/ghoseb)
+* [Jorge Urdaneta](https://github.com/jorgeu)
 
 ## License
 

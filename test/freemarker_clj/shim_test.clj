@@ -3,7 +3,6 @@
   (:use freemarker-clj.shim
         freemarker-clj.core
         midje.sweet))
-(set! *warn-on-reflection* true)
 
 (defn pred-check
   [pred]

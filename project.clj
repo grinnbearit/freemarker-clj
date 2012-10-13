@@ -8,5 +8,5 @@
             [lein-swank "1.4.4"]]
   :profiles {:dev {:resources-path "test-templates"
                    :dependencies [[midje "1.4.0"]
-                                  [com.stuartsierra/lazytest "1.2.3"]]}}
-  :repositories {"stuart" "http://stuartsierra.com/maven2"})
+                                  [com.stuartsierra/lazytest "1.2.3"]]
+                   :repositories {"stuart" "http://stuartsierra.com/maven2"}}})

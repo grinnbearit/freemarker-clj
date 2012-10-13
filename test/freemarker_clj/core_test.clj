@@ -1,6 +1,5 @@
 (ns freemarker-clj.core-test
   (:use freemarker-clj.core
-        freemarker-clj.shim
         midje.sweet)
   (:import [freemarker.template Configuration]))
 

@@ -15,7 +15,7 @@
    (render cfg "test-templates/plain.ftl" {}) => "Hello World!\n"
    (render cfg "test-templates/basic_model.ftl" {:a "World" :b "Hello"}) => "Hello World!\n"
    (render cfg "test-templates/basic_model.ftl" {}) => "Apple Pie!\n"
-   (render cfg "test-templates/transform.ftl" {:first-name "Alan" :last-name (fn->method (constantly "Turing"))}) 
+   (render cfg "test-templates/transform.ftl" {:first-name "Alan" :last-name (constantly "Turing")}) 
                => "Hi Alan I heard your last name is Turing"))
 
 

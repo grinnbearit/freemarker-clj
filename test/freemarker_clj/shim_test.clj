@@ -4,7 +4,6 @@
         freemarker-clj.core
         midje.sweet))
 
-
 (defn pred-check
   [pred]
   (fn [x]

@@ -11,7 +11,7 @@ freemarker-clj is deployed on [clojars](https://clojars.org/freemarker-clj)
 ### leiningen
 
 ```clojure
-[freemarker-clj "0.1.0"]
+[freemarker-clj "0.2.0-SNAPSHOT"]
 ```
 
 ### maven
@@ -20,7 +20,7 @@ freemarker-clj is deployed on [clojars](https://clojars.org/freemarker-clj)
 <dependency>
   <groupId>freemarker-clj</groupId>
   <artifactId>freemarker-clj</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.0-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -47,9 +47,10 @@ You can additionally pass a shared map to the template config
 
 * [Baishampayan Ghose](https://github.com/ghoseb)
 * [Jorge Urdaneta](https://github.com/jorgeu)
+* [Peter Monks](https://github.com/pmonks)
 
 ## License
 
-Copyright © 2012 Sidhant Godiwala (grinnbearit)
+Copyright © 2012-2017 Sidhant Godiwala (grinnbearit)
 
 Distributed under the Eclipse Public License, the same as Clojure.

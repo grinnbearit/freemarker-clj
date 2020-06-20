@@ -30,7 +30,7 @@
                  "return_date" (fn->method (constantly (let [cal (java.util.Calendar/getInstance)]
                                                          (.set cal 1970 0 1 0 0 0)
                                                          (.getTime cal))))})
-        => "\n3\n2\napple\n3.142\ncrazy\n2\n2\nJan 1, 1970 12:00:00 AM\n"))
+        => "\n3\n2\napple\n3.142\ncrazy\n2\n2\nJan 1, 1970, 12:00:00 AM\n"))
 
 
 (let [cfg (gen-config)]
@@ -47,4 +47,4 @@
                                     :fn dec
                                     :with-hyphens "underscores"
                                     :nested [4 {:b 2} inc]}}))
-        => "banana\n5\ncrazy\n2\n1\nJan 1, 2000 12:00:00 AM\n1\nunderscores\n2\n2\n"))
+        => "banana\n5\ncrazy\n2\n1\nJan 1, 2000, 12:00:00 AM\n1\nunderscores\n2\n2\n"))
